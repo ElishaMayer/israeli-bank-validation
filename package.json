@@ -1,13 +1,14 @@
 {
   "name": "israeli-bank-validation",
   "version": "1.0.0",
-  "description": "",
+  "description": "Validate Israeli Bank Accounts",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "test": "jest --config jestconfig.json",
     "version": "git add -A src",
+    "update-version": "npm version patch",
     "update-db": "ts-node src/updateDB.ts"
   },
   "repository": {
@@ -15,8 +16,9 @@
     "url": "git+https://github.com/ElishaMayer/israeli-bank-validation.git"
   },
   "keywords": [
-    "Israeli Bank",
-    "Validation"
+    "Israeli",
+    "Validation",
+    "Bank"
   ],
   "author": "ELisha Mayer",
   "license": "ISC",

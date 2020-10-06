@@ -6,11 +6,20 @@ export const RESULT = {
   UNKNOWN: "UNKNOWN",
 };
 
+/**
+ * Validate bank details
+ * @param {string} bankId the bank id
+ * @param {string} branch the branch id
+ * @param {string} account the account number
+ */
 export function validateBankAccount(
   bankId: string,
   branch: string,
   account: string
 ) {
+  if (bankId.length > 2) return RESULT.NOT_VALID;
+  if (branch.length > 3) return RESULT.NOT_VALID;
+  if (account.length > 9) return RESULT.NOT_VALID;
   let accountVec: Vector;
   let validateAccount: Vector;
   let branchVec = new Vector(branch, 3);
@@ -119,7 +128,7 @@ export function validateBankAccount(
         "1",
       ]);
       accountVec = new Vector(account, 9);
-      return [0].indexOf(validateAccount.mult(accountVec)) !== -1
+      return validateAccount.mult(accountVec) % 10 === 0
         ? RESULT.VALID
         : RESULT.NOT_VALID;
 
@@ -136,7 +145,7 @@ export function validateBankAccount(
         "0",
       ]);
       accountVec = new Vector(account, 9);
-      return 11 - (accountVec.mult(validateAccount) % 11) === accountVec.get(9)
+      return 11 - (accountVec.mult(validateAccount) % 11) === accountVec.get(8)
         ? RESULT.VALID
         : RESULT.NOT_VALID;
     case 46:
@@ -180,7 +189,7 @@ export function validateBankAccount(
         "2",
         "1",
       ]);
-      if (validateAccount.mult(accountVec) === 0) {
+      if (validateAccount.mult(accountVec) % 11 === 0) {
         return RESULT.VALID;
       }
       accountVec = new Vector(account, 6);
@@ -217,7 +226,7 @@ export function validateBankAccount(
         "2",
         "1",
       ]);
-      if (validateAccount.mult(accountVec)) {
+      if (validateAccount.mult(accountVec) % 11 === 0) {
         return RESULT.VALID;
       }
       validateAccount = new Vector(["6", "5", "4", "3", "2", "1"]);
