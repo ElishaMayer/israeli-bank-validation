@@ -1,6 +1,6 @@
 {
   "name": "israeli-bank-validation",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Validate Israeli Bank Accounts",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
